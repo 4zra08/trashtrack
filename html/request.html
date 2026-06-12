@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrashTrack - Pickup Requests</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/request.css">
+    
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div>
+                <div class="logo">
+                    <i class="fa-solid fa-trash-can logo-icon"></i>
+                    <h2>Trash<span>Track</span></h2>
+                </div>
+                
+                <nav class="menu">
+                    <a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+                    <a href="#" class="active"><i class="fa-regular fa-clipboard"></i> Pickup Requests</a>
+                    <a href="#"><i class="fa-solid fa-trash"></i> Bins</a>
+                    <a href="#"><i class="fa-solid fa-route"></i> Routes</a>
+                    <a href="#"><i class="fa-solid fa-chart-simple"></i> Reports</a>
+                    <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+                </nav>
+            </div>
+
+            <div class="sidebar-footer">
+                <i class="fa-solid fa-leaf leaf-icon"></i>
+                <p>Keep our city clean for a greener tomorrow.</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="top-header">
+                <div class="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="help">
+                        <i class="fa-regular fa-circle-question"></i> Help
+                    </div>
+                    <div class="user-profile">
+                        <div class="avatar">JD</div>
+                        <div class="user-info">
+                            <span class="username">John Doe</span>
+                            <span class="role">Admin <i class="fa-solid fa-chevron-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                
+                <div class="page-header-container">
+                    <div>
+                        <h1 class="page-title">Pickup Requests</h1>
+                        <p class="page-subtitle">Manage trash pickup requests and collection status</p>
+                    </div>
+                    <button class="btn-new-request-main">
+                        <i class="fa-solid fa-plus"></i> New Request
+                    </button>
+                </div>
+
+                <div class="filters-container">
+                    <div class="search-wrapper">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search requests...">
+                    </div>
+                    <div class="filter-select-box">
+                        <select>
+                            <option>All Areas</option>
+                        </select>
+                    </div>
+                    <div class="filter-select-box">
+                        <select>
+                            <option>All Status</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="stats-cards-grid">
+                    <div class="stat-box total">
+                        <div class="stat-box-icon"><i class="fa-regular fa-clipboard"></i></div>
+                        <div class="stat-box-info">
+                            <p>Total Requests</p>
+                            <h2>48</h2>
+                        </div>
+                    </div>
+                    <div class="stat-box pending">
+                        <div class="stat-box-icon"><i class="fa-regular fa-clock"></i></div>
+                        <div class="stat-box-info">
+                            <p>Pending</p>
+                            <h2>12</h2>
+                        </div>
+                    </div>
+                    <div class="stat-box collected">
+                        <div class="stat-box-icon"><i class="fa-regular fa-circle-check"></i></div>
+                        <div class="stat-box-info">
+                            <p>Collected</p>
+                            <h2>30</h2>
+                        </div>
+                    </div>
+                    <div class="stat-box overflow">
+                        <div class="stat-box-icon"><i class="fa-regular fa-trash-can"></i></div>
+                        <div class="stat-box-info">
+                            <p>Overflow Bins</p>
+                            <h2>6</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Area</th>
+                                <th>Trash Type</th>
+                                <th>Pickup Date</th>
+                                <th>Status</th>
+                                <th>Assigned To</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 600;">TR-1001</td>
+                                <td>Downtown</td>
+                                <td>General Waste</td>
+                                <td>Apr 12, 2026</td>
+                                <td><span class="badge-status badge-pending">Pending</span></td>
+                                <td>Alex</td>
+                                <td class="actions-cell">
+                                    <a href="#" class="view-act">View</a>
+                                    <a href="#" class="edit-act">Edit</a>
+                                    <a href="#" class="del-act">Delete</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">TR-1002</td>
+                                <td>Riverside</td>
+                                <td>Recyclables</td>
+                                <td>Apr 13, 2026</td>
+                                <td><span class="badge-status badge-collected">Collected</span></td>
+                                <td>Mira</td>
+                                <td class="actions-cell">
+                                    <a href="#" class="view-act">View</a>
+                                    <a href="#" class="edit-act">Edit</a>
+                                    <a href="#" class="del-act">Delete</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">TR-1003</td>
+                                <td>West End</td>
+                                <td>Organic</td>
+                                <td>Apr 13, 2026</td>
+                                <td><span class="badge-status badge-inprogress">In Progress</span></td>
+                                <td>Leon</td>
+                                <td class="actions-cell">
+                                    <a href="#" class="view-act">View</a>
+                                    <a href="#" class="edit-act">Edit</a>
+                                    <a href="#" class="del-act">Delete</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">TR-1004</td>
+                                <td>Green Park</td>
+                                <td>General Waste</td>
+                                <td>Apr 14, 2026</td>
+                                <td><span class="badge-status badge-pending">Pending</span></td>
+                                <td>Alex</td>
+                                <td class="actions-cell">
+                                    <a href="#" class="view-act">View</a>
+                                    <a href="#" class="edit-act">Edit</a>
+                                    <a href="#" class="del-act">Delete</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">TR-1005</td>
+                                <td>Old Town</td>
+                                <td>Bulk Waste</td>
+                                <td>Apr 14, 2026</td>
+                                <td><span class="badge-status badge-cancelled">Cancelled</span></td>
+                                <td>Mira</td>
+                                <td class="actions-cell">
+                                    <a href="#" class="view-act">View</a>
+                                    <a href="#" class="edit-act">Edit</a>
+                                    <a href="#" class="del-act">Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="table-pagination-footer">
+                        <div class="pagination-text">
+                            Showing 1 to 5 of 48 requests
+                        </div>
+                        <div class="pagination-pages">
+                            <button class="page-click"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="page-click active">1</button>
+                            <button class="page-click">2</button>
+                            <button class="page-click">3</button>
+                            <button class="page-click">4</button>
+                            <button class="page-click">5</button>
+                            <span style="color: #64748b; padding: 0 4px;">...</span>
+                            <button class="page-click"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+  
+</body>
+</html>

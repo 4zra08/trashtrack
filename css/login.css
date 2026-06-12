@@ -1,0 +1,307 @@
+:root {
+    --bg-dark: #16222f;          
+    --bg-light: #f4f7f6;         
+    --green-primary: #2d9d58;    
+    --green-light: #e8f5ed;      
+    --orange-primary: #f2994a;  
+    --orange-light: #fef4ea;
+    --blue-primary: #2f80ed;     
+    --blue-light: #ebf3fe;
+    --red-primary: #eb5757;      
+    --red-light: #fdebeb;
+    --text-main: #333333;        
+    --text-muted: #828282;      
+    --border-color: #eaeaea;     
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f3f7f5;
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+.auth-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f3f7f5;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: 20px;
+    z-index: 5;
+}
+
+.auth-card {
+    background: white;
+    padding: 45px 40px;
+    border-radius: 28px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.02);
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.01);
+}
+
+/* BRAND LOGO */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.brand-icon {
+    background: var(--green-primary);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.brand-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+}
+
+.brand-name span {
+    color: var(--green-primary);
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1d1d1d;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 35px;
+}
+
+/* INPUTS FORM */
+.form-group {
+    text-align: left;
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4f4f4f;
+    margin-bottom: 8px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    color: #bdbdbd;
+    font-size: 16px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 16px 14px 46px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+    background-color: #fff;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--green-primary);
+    box-shadow: 0 0 0 4px rgba(45, 157, 88, 0.08);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 16px;
+    color: #bdbdbd;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* ACTIONS ROW (Remember me / Forgot pass) */
+.form-actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    font-size: 13px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-check input {
+    accent-color: var(--green-primary);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.form-check label {
+    color: #4f4f4f;
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: #f2994a; /* Ngjyra origjinale portokalli si në dizajnin tuaj */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: var(--green-primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+}
+
+.btn-submit:hover {
+    background: #237e46;
+}
+
+.divider {
+    margin: 20px 0;
+    position: relative;
+    text-align: center;
+}
+
+.divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #eaeaea;
+    z-index: 1;
+}
+
+.divider span {
+    background: white;
+    padding: 0 12px;
+    color: var(--text-muted);
+    font-size: 13px;
+    position: relative;
+    z-index: 2;
+}
+
+.auth-footer {
+    font-size: 14px;
+    color: #4f4f4f;
+}
+
+.auth-footer a {
+    color: var(--green-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* DEKORIMET DHE VEKTORËT GRAFIKË (SI NË IMAZH) */
+.bg-dots {
+    position: absolute;
+    width: 120px;
+    height: 80px;
+    background-image: radial-gradient(#cbd5e1 2px, transparent 2px);
+    background-size: 12px 12px;
+    opacity: 0.6;
+}
+.top-right { top: 40px; right: 40px; }
+.bottom-left { bottom: 40px; left: 40px; }
+
+.bg-leaf {
+    position: absolute;
+    color: #a7f3d0;
+    font-size: 28px;
+    opacity: 0.5;
+}
+.leaf-1 { top: 25%; left: 15%; transform: rotate(-15deg); }
+.leaf-2 { top: 35%; right: 15%; transform: rotate(35deg); }
+
+/* Kamioni Grafik */
+.vector-truck {
+    position: absolute;
+    left: 8%;
+    bottom: 15%;
+    font-size: 130px;
+    color: #86efac;
+    opacity: 0.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.truck-eco-symbol {
+    position: absolute;
+    font-size: 35px;
+    color: #2d9d58;
+    top: 35%;
+    left: 30%;
+}
+
+/* Koshi Grafik */
+.vector-bin {
+    position: absolute;
+    right: 10%;
+    bottom: 12%;
+    font-size: 110px;
+    color: #86efac;
+    opacity: 0.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bin-eco-symbol {
+    position: absolute;
+    font-size: 30px;
+    color: #2d9d58;
+    top: 40%;
+}
+
+/* Përgjegjshmëria në pajisjet mobile */
+@media (max-width: 900px) {
+    .vector-truck, .vector-bin, .bg-leaf {
+        display: none;
+    }
+}

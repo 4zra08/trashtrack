@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrashTrack - Create Pickup Request</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-trash-can logo-icon"></i>
+                <h2>Trash<span>Track</span></h2>
+            </div>
+            
+            <nav class="menu">
+                <a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+                <a href="#" class="active"><i class="fa-regular fa-clipboard"></i> Pickup Requests</a>
+                <a href="#"><i class="fa-solid fa-trash"></i> Bins</a>
+                <a href="#"><i class="fa-solid fa-route"></i> Routes</a>
+                <a href="#"><i class="fa-solid fa-chart-simple"></i> Reports</a>
+                <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <i class="fa-solid fa-leaf leaf-icon"></i>
+                <p>Keep our city clean for a greener tomorrow.</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="top-header">
+                <div class="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="help">
+                        <i class="fa-regular fa-circle-question"></i> Help
+                    </div>
+                    <div class="user-profile">
+                        <div class="avatar">JD</div>
+                        <div class="user-info">
+                            <span class="username">John Doe</span>
+                            <span class="role">Admin <i class="fa-solid fa-chevron-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <a href="#" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Pickup Requests</a>
+                <h1 class="page-title">Create Pickup Request</h1>
+                <p class="page-subtitle">Fill in the details below to create a new pickup request.</p>
+
+                <div class="grid-container">
+                    
+                    <section class="form-card">
+                        <form id="pickupForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="requestId">Request ID</label>
+                                    <input type="text" id="requestId" placeholder="e.g., TR-1006" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="area">Area</label>
+                                    <select id="area" required>
+                                        <option value="" disabled selected>Select area</option>
+                                        <option value="center">Qendër</option>
+                                        <option value="north">Veri</option>
+                                        <option value="south">Jug</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="trashType">Trash Type</label>
+                                    <select id="trashType" required>
+                                        <option value="" disabled selected>Select trash type</option>
+                                        <option value="plastic">Plastikë</option>
+                                        <option value="organic">Organike</option>
+                                        <option value="paper">Letër</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pickupDate">Pickup Date</label>
+                                    <input type="date" id="pickupDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="assignedTo">Assigned To</label>
+                                    <select id="assignedTo" required>
+                                        <option value="" disabled selected>Select team member</option>
+                                        <option value="member1">Agon Krasniqi</option>
+                                        <option value="member2">Blerta Gashi</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select id="status">
+                                        <option value="pending" selected>Pending</option>
+                                        <option value="in-progress">In Progress</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="binCount">Quantity or Bin Count</label>
+                                <input type="number" id="binCount" placeholder="Enter quantity or number of bins (e.g., 5)" min="1" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="notes">Notes</label>
+                                <textarea id="notes" rows="4" placeholder="Add any additional notes (optional)"></textarea>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn-cancel" id="btnCancel">Cancel</button>
+                                <button type="submit" class="btn-submit"><i class="fa-regular fa-floppy-disk"></i> Save Request</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <aside class="tips-card">
+                        <div class="tip-item main-tip">
+                            <i class="fa-regular fa-lightbulb icon-bulb"></i>
+                            <div>
+                                <h3>Tips</h3>
+                                <p>Fill in accurate details to help our team collect waste efficiently.</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="tip-item">
+                            <i class="fa-regular fa-calendar-days icon-green"></i>
+                            <div>
+                                <h4>Pickup Date</h4>
+                                <p>Choose the correct date for collection.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-regular fa-user icon-green"></i>
+                            <div>
+                                <h4>Assigned To</h4>
+                                <p>Assign to the right team member.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-regular fa-trash-can icon-green"></i>
+                            <div>
+                                <h4>Trash Type</h4>
+                                <p>Select the correct type of waste.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-regular fa-file-lines icon-green"></i>
+                            <div>
+                                <h4>Notes</h4>
+                                <p>Add notes if there are special instructions.</p>
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
