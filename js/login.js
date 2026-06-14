@@ -1,25 +1,32 @@
-
-        // Funksioni për të fshehur/shfaqur fjalëkalimin
-        function togglePasswordVisibility(inputId, icon) {
-            const input = document.getElementById(inputId);
-            if (input.type === "password") {
-                input.type = "text";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
-            } else {
-                input.type = "password";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
-            }
-        }
-
-        // Menaxhimi i dërgimit të formës
-        function handleLogin(event) {
-            event.preventDefault();
-            const email = document.getElementById("loginEmail").value;
-            console.log("Tentim kyçjeje me:", email);
-            // Këtu mund të shtosh redirect-in pas login-it të suksesshëm:
-            // window.location.href = "dashboard.html";
-            return false;
-        }
+function handleLogin(event) {
+    event.preventDefault();
     
+    const emailValue = document.getElementById("loginEmail").value;
+    const passwordValue = document.getElementById("loginPassword").value;
+
+    fetch(`http://localhost:4001/users?email=${emailValue}`)
+    .then(response => response.json())
+    .then(users => {
+        if (users.length === 0) {
+            alert("Ky email nuk është i regjistruar!");
+            return;
+        }
+
+        const user = users[0];
+
+        if (user.password === passwordValue) {
+            localStorage.setItem('currentUser', emailValue);
+            
+            // Ridrejtimi te faqja me tabelë (Request)
+            window.location.href = "request.html";
+        } else {
+            alert("Fjalëkalimi është i pasaktë!");
+        }
+    })
+    .catch(error => {
+        console.error("Gabim:", error);
+        alert("Sigurohu që JSON Server është i ndezur!");
+    });
+
+    return false;
+}

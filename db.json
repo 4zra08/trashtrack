@@ -1,1 +1,92 @@
-{}
+{
+  "users": [
+    {
+      "fullName": "Azra Kera",
+      "email": "test@gmail.com",
+      "password": "12341234",
+      "id": "IHgB3JyK1cM"
+    },
+    {
+      "fullName": "azra",
+      "email": "azra@gmail.com",
+      "password": "12341234",
+      "id": "zzp9d03NB-c"
+    },
+    {
+      "fullName": "Azra Kera",
+      "email": "azra@gmail.com",
+      "password": "12341234",
+      "id": "pcod6YlzGhI"
+    }
+  ],
+  "requests": [
+    {
+      "requestId": "2",
+      "area": "south",
+      "trashType": "organic",
+      "pickupDate": "2026-02-02",
+      "assignedTo": "member1",
+      "status": "pending",
+      "binCount": "22",
+      "notes": "",
+      "id": "xPf5pjNIqtI"
+    },
+    {
+      "requestId": "1",
+      "area": "south",
+      "trashType": "organic",
+      "pickupDate": "2026-02-02",
+      "assignedTo": "member1",
+      "status": "in-progress",
+      "binCount": "1",
+      "notes": "",
+      "userEmail": "test@gmail.com",
+      "id": "p6ScxH1Qpwg"
+    },
+    {
+      "requestId": "1",
+      "area": "north",
+      "trashType": "organic",
+      "pickupDate": "2026-02-02",
+      "assignedTo": "member1",
+      "status": "completed",
+      "binCount": "2",
+      "notes": "",
+      "id": "C9FXO6cP_tE"
+    },
+    {
+      "requestId": "1009",
+      "area": "north",
+      "trashType": "paper",
+      "pickupDate": "2026-04-04",
+      "assignedTo": "member2",
+      "status": "pending",
+      "binCount": "1209",
+      "notes": "",
+      "id": "LQbYCiOLmbs"
+    },
+    {
+      "requestId": "2",
+      "area": "south",
+      "trashType": "plastic",
+      "pickupDate": "2026-06-06",
+      "assignedTo": "member2",
+      "status": "in-progress",
+      "binCount": "1212",
+      "notes": "",
+      "id": "OuafWdh3jWo"
+    },
+    {
+      "requestId": "2",
+      "area": "north",
+      "trashType": "organic",
+      "pickupDate": "2026-05-05",
+      "assignedTo": "member2",
+      "status": "pending",
+      "binCount": "9",
+      "notes": "",
+      "userEmail": "azra@gmail.com",
+      "id": "23suEIOgT9M"
+    }
+  ]
+}

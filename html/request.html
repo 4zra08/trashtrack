@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/request.css">
-    
 </head>
 <body>
 
@@ -51,9 +50,9 @@
                         <i class="fa-regular fa-circle-question"></i> Help
                     </div>
                     <div class="user-profile">
-                        <div class="avatar">JD</div>
+                        <div class="avatar" id="userAvatarDisplay">JD</div>
                         <div class="user-info">
-                            <span class="username">John Doe</span>
+                            <span class="username" id="userNameDisplay">John Doe</span>
                             <span class="role">Admin <i class="fa-solid fa-chevron-down"></i></span>
                         </div>
                     </div>
@@ -67,7 +66,7 @@
                         <h1 class="page-title">Pickup Requests</h1>
                         <p class="page-subtitle">Manage trash pickup requests and collection status</p>
                     </div>
-                    <button class="btn-new-request-main">
+                    <button class="btn-new-request-main" id="btnNewRequest">
                         <i class="fa-solid fa-plus"></i> New Request
                     </button>
                 </div>
@@ -75,16 +74,25 @@
                 <div class="filters-container">
                     <div class="search-wrapper">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Search requests...">
+                        <input type="text" id="searchInput" placeholder="Search requests...">
                     </div>
                     <div class="filter-select-box">
-                        <select>
-                            <option>All Areas</option>
+                        <select id="areaFilter">
+                            <option value="">All Areas</option>
+                            <option value="Downtown">Downtown</option>
+                            <option value="Riverside">Riverside</option>
+                            <option value="West End">West End</option>
+                            <option value="Green Park">Green Park</option>
+                            <option value="Old Town">Old Town</option>
                         </select>
                     </div>
                     <div class="filter-select-box">
-                        <select>
-                            <option>All Status</option>
+                        <select id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Collected">Collected</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
                 </div>
@@ -94,28 +102,28 @@
                         <div class="stat-box-icon"><i class="fa-regular fa-clipboard"></i></div>
                         <div class="stat-box-info">
                             <p>Total Requests</p>
-                            <h2>48</h2>
+                            <h2 id="statTotal">48</h2>
                         </div>
                     </div>
                     <div class="stat-box pending">
                         <div class="stat-box-icon"><i class="fa-regular fa-clock"></i></div>
                         <div class="stat-box-info">
                             <p>Pending</p>
-                            <h2>12</h2>
+                            <h2 id="statPending">12</h2>
                         </div>
                     </div>
                     <div class="stat-box collected">
                         <div class="stat-box-icon"><i class="fa-regular fa-circle-check"></i></div>
                         <div class="stat-box-info">
                             <p>Collected</p>
-                            <h2>30</h2>
+                            <h2 id="statCollected">30</h2>
                         </div>
                     </div>
                     <div class="stat-box overflow">
                         <div class="stat-box-icon"><i class="fa-regular fa-trash-can"></i></div>
                         <div class="stat-box-info">
                             <p>Overflow Bins</p>
-                            <h2>6</h2>
+                            <h2 id="statOverflow">6</h2>
                         </div>
                     </div>
                 </div>
@@ -133,78 +141,13 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td style="font-weight: 600;">TR-1001</td>
-                                <td>Downtown</td>
-                                <td>General Waste</td>
-                                <td>Apr 12, 2026</td>
-                                <td><span class="badge-status badge-pending">Pending</span></td>
-                                <td>Alex</td>
-                                <td class="actions-cell">
-                                    <a href="#" class="view-act">View</a>
-                                    <a href="#" class="edit-act">Edit</a>
-                                    <a href="#" class="del-act">Delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 600;">TR-1002</td>
-                                <td>Riverside</td>
-                                <td>Recyclables</td>
-                                <td>Apr 13, 2026</td>
-                                <td><span class="badge-status badge-collected">Collected</span></td>
-                                <td>Mira</td>
-                                <td class="actions-cell">
-                                    <a href="#" class="view-act">View</a>
-                                    <a href="#" class="edit-act">Edit</a>
-                                    <a href="#" class="del-act">Delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 600;">TR-1003</td>
-                                <td>West End</td>
-                                <td>Organic</td>
-                                <td>Apr 13, 2026</td>
-                                <td><span class="badge-status badge-inprogress">In Progress</span></td>
-                                <td>Leon</td>
-                                <td class="actions-cell">
-                                    <a href="#" class="view-act">View</a>
-                                    <a href="#" class="edit-act">Edit</a>
-                                    <a href="#" class="del-act">Delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 600;">TR-1004</td>
-                                <td>Green Park</td>
-                                <td>General Waste</td>
-                                <td>Apr 14, 2026</td>
-                                <td><span class="badge-status badge-pending">Pending</span></td>
-                                <td>Alex</td>
-                                <td class="actions-cell">
-                                    <a href="#" class="view-act">View</a>
-                                    <a href="#" class="edit-act">Edit</a>
-                                    <a href="#" class="del-act">Delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 600;">TR-1005</td>
-                                <td>Old Town</td>
-                                <td>Bulk Waste</td>
-                                <td>Apr 14, 2026</td>
-                                <td><span class="badge-status badge-cancelled">Cancelled</span></td>
-                                <td>Mira</td>
-                                <td class="actions-cell">
-                                    <a href="#" class="view-act">View</a>
-                                    <a href="#" class="edit-act">Edit</a>
-                                    <a href="#" class="del-act">Delete</a>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody id="tableBody">
+                            </tbody>
                     </table>
 
                     <div class="table-pagination-footer">
                         <div class="pagination-text">
-                            Showing 1 to 5 of 48 requests
+                            Showing <span id="currentRowsCount">5</span> of 48 requests
                         </div>
                         <div class="pagination-pages">
                             <button class="page-click"><i class="fa-solid fa-chevron-left"></i></button>
@@ -222,7 +165,22 @@
             </div>
         </main>
     </div>
+    <div id="deleteModal" class="custom-modal">
+    <div class="modal-content">
+        <div class="modal-icon-container">
+            <div class="trash-circle-icon">
+                <i class="fa-regular fa-trash-can"></i>
+            </div>
+        </div>
+        <h2>Delete Request?</h2>
+        <p>Are you sure you want to delete request <strong id="modalRequestId">TR-XXXX</strong>?<br>This action cannot be undone.</p>
+        <div class="modal-actions-btns">
+            <button id="btnCancelDelete" class="modal-btn-cancel">Cancel</button>
+            <button id="btnConfirmDelete" class="modal-btn-delete">Delete</button>
+        </div>
+    </div>
+</div>
 
-  
+    <script src="../js/request.js"></script>
 </body>
 </html>

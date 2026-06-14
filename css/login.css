@@ -148,7 +148,6 @@ h2 {
     font-size: 16px;
 }
 
-/* ACTIONS ROW (Remember me / Forgot pass) */
 .form-actions-row {
     display: flex;
     justify-content: space-between;
@@ -176,7 +175,7 @@ h2 {
 }
 
 .forgot-link {
-    color: #f2994a; /* Ngjyra origjinale portokalli si në dizajnin tuaj */
+    color: #f2994a; 
     text-decoration: none;
     font-weight: 600;
 }
@@ -239,7 +238,6 @@ h2 {
     font-weight: 600;
 }
 
-/* DEKORIMET DHE VEKTORËT GRAFIKË (SI NË IMAZH) */
 .bg-dots {
     position: absolute;
     width: 120px;
@@ -280,7 +278,6 @@ h2 {
     left: 30%;
 }
 
-/* Koshi Grafik */
 .vector-bin {
     position: absolute;
     right: 10%;
@@ -299,7 +296,6 @@ h2 {
     top: 40%;
 }
 
-/* Përgjegjshmëria në pajisjet mobile */
 @media (max-width: 900px) {
     .vector-truck, .vector-bin, .bg-leaf {
         display: none;

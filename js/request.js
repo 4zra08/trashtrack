@@ -1,90 +1,318 @@
+const baseUrl = "http://localhost:4001/";
 
-        // Të dhënat nga tabela e imazhit tuaj
-        const requestsData = [
-            { id: "TR-1001", area: "Downtown", type: "General Waste", date: "Apr 12, 2026", status: "Pending", user: "Alex" },
-            { id: "TR-1002", area: "Riverside", type: "Recyclables", date: "Apr 13, 2026", status: "Collected", user: "Mira" },
-            { id: "TR-1003", area: "West End", type: "Organic", date: "Apr 13, 2026", status: "In Progress", user: "Leon" },
-            { id: "TR-1004", area: "Green Park", type: "General Waste", date: "Apr 14, 2026", status: "Pending", user: "Alex" },
-            { id: "TR-1005", area: "Old Town", type: "Bulk Waste", date: "Apr 14, 2026", status: "Cancelled", user: "Mira" }
-        ];
+// MBROJTJA E FAQES: Nëse nuk ka bërë login, e kthen direkt te login.html
+if (!localStorage.getItem('currentUser')) {
+    window.location.href = "login.html";
+}
 
-        const tableBody = document.getElementById('tableBody');
-        const searchInput = document.getElementById('searchInput');
-        const areaFilter = document.getElementById('areaFilter');
-        const statusFilter = document.getElementById('statusFilter');
-        const currentRowsCount = document.getElementById('currentRowsCount');
+document.addEventListener("DOMContentLoaded", () => {
+    
+    const userDisplay = document.getElementById("userNameDisplay");
+    const avatarDisplay = document.getElementById("userAvatarDisplay");
+    const currentUserEmail = localStorage.getItem('currentUser');
 
-        // Funksioni për të kthyer klasën e duhur të statusit
-        function getStatusClass(status) {
-            switch(status) {
-                case 'Pending': return 'status-pending';
-                case 'Collected': return 'status-collected';
-                case 'In Progress': return 'status-inprogress';
-                case 'Cancelled': return 'status-cancelled';
-                default: return '';
+    if (currentUserEmail) {
+        fetch(`${baseUrl}users?email=${currentUserEmail}`)
+        .then(response => response.json())
+        .then(users => {
+            if (users.length > 0) {
+                const realName = users[0].fullName;
+                if (realName) {
+                    if (userDisplay) userDisplay.textContent = realName;
+                    if (avatarDisplay) {
+                        const initials = realName.split(" ").map(f => f[0]).join("").toUpperCase();
+                        avatarDisplay.textContent = initials.substring(0, 2);
+                    }
+                }
             }
-        }
+        })
+        .catch(err => console.error("Gabim te emri:", err));
+    }
 
-        // Funksioni për të shfaqur tabelën në ekran
-        function renderTable(data) {
-            tableBody.innerHTML = "";
-            
-            if(data.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#94a3b8; padding:30px;">Nuk u gjet asnjë rezultat.</td></tr>`;
-                currentRowsCount.textContent = 0;
-                return;
-            }
+    // ==========================================
+    // LOGOUT DROPDOWN LOGIC
+    // ==========================================
+    const userProfile = document.querySelector('.user-profile');
+    if (userProfile) {
+        userProfile.style.position = 'relative';
+        userProfile.style.cursor = 'pointer';
 
-            data.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td style="font-weight: 600; color: #1e293b;">${item.id}</td>
-                    <td>${item.area}</td>
-                    <td>${item.type}</td>
-                    <td>${item.date}</td>
-                    <td><span class="badge-status ${getStatusClass(item.status)}">${item.status}</span></td>
-                    <td>${item.user}</td>
-                    <td class="actions-links">
-                        <a href="#" class="action-view" onclick="alert('Duke parë: ${item.id}')">View</a>
-                        <a href="#" class="action-edit" onclick="alert('Duke modifikuar: ${item.id}')">Edit</a>
-                        <a href="#" class="action-delete" onclick="alert('Duke fshirë: ${item.id}')">Delete</a>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-            
-            currentRowsCount.textContent = data.length;
-        }
+        // Krijojmë container-in e menusë dropdown
+        const dropdownMenu = document.createElement('div');
+        dropdownMenu.style.cssText = `
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 10px 14px;
+            display: none;
+            z-index: 1000;
+            min-width: 130px;
+        `;
 
-        // Funksioni i filtrimit të të dhënave (Search & Select dropdowns)
-        function filterData() {
-            const searchValue = searchInput.value.toLowerCase();
-            const areaValue = areaFilter.value;
-            const statusValue = statusFilter.value;
+        // Krijojmë linkun e Logout brenda menusë
+        const logoutLink = document.createElement('a');
+        logoutLink.href = '#';
+        logoutLink.innerHTML = '<i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i>Logout';
+        logoutLink.style.cssText = 'color: #ef4444; font-size: 14px; text-decoration: none; font-weight: 500; display: block; width: 100%; text-align: left;';
+        
+        dropdownMenu.appendChild(logoutLink);
+        userProfile.appendChild(dropdownMenu);
 
-            const filtered = requestsData.filter(item => {
-                const matchesSearch = item.id.toLowerCase().includes(searchValue) || 
-                                      item.area.toLowerCase().includes(searchValue) || 
-                                      item.user.toLowerCase().includes(searchValue);
-                const matchesArea = areaValue === "" || item.area === areaValue;
-                const matchesStatus = statusValue === "" || item.status === statusValue;
-
-                return matchesSearch && matchesArea && matchesStatus;
-            });
-
-            renderTable(filtered);
-        }
-
-        // Event Listeners për ndryshimet
-        searchInput.addEventListener('input', filterData);
-        areaFilter.addEventListener('change', filterData);
-        statusFilter.addEventListener('change', filterData);
-
-        // Event listener i thjeshtë për butonin New Request
-        document.getElementById('btnNewRequest').addEventListener('click', () => {
-            alert('Butoni "New Request" u klikua! Këtu mund të hapet një Formë.');
+        // Shfaq / Fsheh dropdown-in me klikim
+        userProfile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isDisplayed = dropdownMenu.style.display === 'block';
+            dropdownMenu.style.display = isDisplayed ? 'none' : 'block';
         });
 
-        // Shfaqja fillestare e tabelës gjatë ngarkimit të faqes
-        renderTable(requestsData);
+        // Funksioni i fshirjes së sesionit
+        logoutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        });
+
+        // Mbyll dropdown-in nëse klikohet jashtë tij
+        document.addEventListener('click', () => {
+            dropdownMenu.style.display = 'none';
+        });
+    }
+
+    const tableBody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('searchInput');
+    const areaFilter = document.getElementById('areaFilter');
+    const statusFilter = document.getElementById('statusFilter');
+    const currentRowsCount = document.getElementById('currentRowsCount');
+
+    const statTotal = document.getElementById('statTotal');
+    const statPending = document.getElementById('statPending');
+    const statCollected = document.getElementById('statCollected');
+    const statOverflow = document.getElementById('statOverflow');
+
+    const deleteModal = document.getElementById('deleteModal');
+    const modalRequestId = document.getElementById('modalRequestId');
+    const btnCancelDelete = document.getElementById('btnCancelDelete');
+    const btnConfirmDelete = document.getElementById('btnConfirmDelete');
     
+    let allRequests = [];
+    let filteredRequests = [];
+    let currentPage = 1;
+    const rowsPerPage = 5; 
+    let idToExecuteDelete = null; 
+
+    function getStatusClass(status) {
+        switch(status?.toLowerCase()) {
+            case 'pending': return 'badge-pending';
+            case 'completed': 
+            case 'collected': return 'badge-collected';
+            case 'in-progress': return 'badge-inprogress';
+            case 'cancelled': return 'badge-cancelled';
+            default: return '';
+        }
+    }
+
+    function updateStatistics(data) {
+        if (!statTotal) return;
+        statTotal.textContent = data.length;
+        statPending.textContent = data.filter(item => item.status?.toLowerCase() === 'pending').length;
+        statCollected.textContent = data.filter(item => item.status?.toLowerCase() === 'completed' || item.status?.toLowerCase() === 'collected').length;
+        statOverflow.textContent = data.filter(item => item.status?.toLowerCase() === 'in-progress').length;
+    }
+
+    function renderTable(data) {
+        if (!tableBody) return;
+        tableBody.innerHTML = "";
+        
+        if (data.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#94a3b8; padding:30px;">Nuk u gjet asnjë kërkesë.</td></tr>`;
+            
+            const paginationTextDiv = document.querySelector('.pagination-text');
+            if (paginationTextDiv) {
+                paginationTextDiv.innerHTML = `Showing <span id="currentRowsCount">0</span> of 0 requests`;
+            }
+            
+            updateStatistics(allRequests);
+            return;
+        }
+
+        const startIndex = (currentPage - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+        const paginatedItems = data.slice(startIndex, endIndex);
+
+        paginatedItems.forEach(item => {
+            const row = document.createElement('tr');
+            
+            let displayStatus = item.status || "Pending";
+            if(displayStatus === "in-progress") displayStatus = "In Progress";
+            if(displayStatus === "completed") displayStatus = "Completed";
+            if(displayStatus === "pending") displayStatus = "Pending";
+
+            const idTarget = item.id; 
+            const readableId = item.requestId ? `TR-${item.requestId}` : `TR-${item.id}`;
+
+            row.innerHTML = `
+                <td style="font-weight: 600;">${readableId}</td>
+                <td style="text-transform: capitalize;">${item.area || 'N/A'}</td>
+                <td style="text-transform: capitalize;">${item.trashType || 'N/A'}</td>
+                <td>${item.pickupDate || 'N/A'}</td>
+                <td><span class="badge-status ${getStatusClass(item.status)}">${displayStatus}</span></td>
+                <td>${item.assignedTo === 'member1' ? 'Agon Krasniqi' : (item.assignedTo === 'member2' ? 'Blerta Gashi' : (item.assignedTo || 'Unassigned'))}</td>
+                <td class="actions-cell">
+                    <a href="#" class="view-act" onclick="event.preventDefault();">View</a>
+                    <a href="#" class="edit-act" onclick="event.preventDefault(); window.location.href='index.html?editId=${idTarget}'">Edit</a>
+                    <a href="#" class="del-act" onclick="event.preventDefault(); openDeleteModal('${idTarget}', '${readableId}')">Delete</a>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+        
+        const paginationTextDiv = document.querySelector('.pagination-text');
+        if (paginationTextDiv) {
+            paginationTextDiv.innerHTML = `Showing <span id="currentRowsCount">${paginatedItems.length}</span> of ${data.length} requests`;
+        }
+
+        updateStatistics(allRequests);
+        updateActiveButtonVisuals();
+    }
+
+    function setupStaticPagination() {
+        const pageButtons = document.querySelectorAll('.pagination-pages .page-click');
+        
+        pageButtons.forEach(btn => {
+            const pageNumber = parseInt(btn.textContent.trim());
+            
+            if (!isNaN(pageNumber)) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentPage = pageNumber; 
+                    renderTable(filteredRequests); 
+                });
+            }
+            
+            if (btn.querySelector('.fa-chevron-left') || btn.textContent.trim() === '<') {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentPage > 1) {
+                        currentPage--;
+                        renderTable(filteredRequests);
+                    }
+                });
+            }
+
+            if (btn.querySelector('.fa-chevron-right') || btn.textContent.trim() === '>') {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const maxPage = Math.ceil(filteredRequests.length / rowsPerPage);
+                    if (currentPage < maxPage) {
+                        currentPage++;
+                        renderTable(filteredRequests);
+                    }
+                });
+            }
+        });
+    }
+
+    function updateActiveButtonVisuals() {
+        const pageButtons = document.querySelectorAll('.pagination-pages .page-click');
+        pageButtons.forEach(btn => {
+            const pageNumber = parseInt(btn.textContent.trim());
+            if (!isNaN(pageNumber)) {
+                if (pageNumber === currentPage) {
+                    btn.classList.add('active');
+                    btn.style.backgroundColor = '#4ade80'; 
+                    btn.style.color = '#ffffff';
+                } else {
+                    btn.classList.remove('active');
+                    btn.style.backgroundColor = '';
+                    btn.style.color = '';
+                }
+            }
+        });
+    }
+
+    window.openDeleteModal = function(serverId, printableId) {
+        idToExecuteDelete = serverId; 
+        if (modalRequestId) modalRequestId.textContent = printableId; 
+        if (deleteModal) deleteModal.style.display = 'flex'; 
+    }
+
+    if (btnCancelDelete) {
+        btnCancelDelete.addEventListener('click', () => {
+            if (deleteModal) deleteModal.style.display = 'none';
+            idToExecuteDelete = null;
+        });
+    }
+
+    if (btnConfirmDelete) {
+        btnConfirmDelete.addEventListener('click', () => {
+            if (!idToExecuteDelete) return;
+
+            fetch(`${baseUrl}requests/${idToExecuteDelete}`, {
+                method: "DELETE"
+            })
+            .then(response => {
+                if (response.ok) {
+                    if (deleteModal) deleteModal.style.display = 'none'; 
+                    fetchRequestsFromServer(); 
+                }
+            })
+            .catch(err => console.error("Gabim:", err));
+        });
+    }
+
+    function fetchRequestsFromServer() {
+        fetch(`${baseUrl}requests`)
+        .then(response => response.json())
+        .then(data => {
+            allRequests = data;
+            filteredRequests = data;
+            renderTable(filteredRequests);
+            setupStaticPagination(); 
+        })
+        .catch(err => console.error(err));
+    }
+
+    function filterData() {
+        const searchValue = searchInput ? searchInput.value.toLowerCase() : "";
+        const areaValue = areaFilter ? areaFilter.value.toLowerCase() : "";
+        const statusValue = statusFilter ? statusFilter.value.toLowerCase() : "";
+
+        filteredRequests = allRequests.filter(item => {
+            const idText = `tr-${item.requestId || item.id}`.toLowerCase();
+            const areaText = (item.area || "").toLowerCase();
+            const typeText = (item.trashType || "").toLowerCase();
+
+            const matchesSearch = idText.includes(searchValue) || areaText.includes(searchValue) || typeText.includes(searchValue);
+            const matchesArea = areaValue === "" || areaValue.includes("all") || areaText === areaValue;
+            
+            let dbStatus = (item.status || "").toLowerCase();
+            let selectedFilterStatus = statusValue;
+            if(selectedFilterStatus === "in progress") selectedFilterStatus = "in-progress";
+            if(selectedFilterStatus === "collected") selectedFilterStatus = "completed";
+
+            const matchesStatus = statusValue === "" || statusValue.includes("all") || dbStatus === selectedFilterStatus;
+
+            return matchesSearch && matchesArea && matchesStatus;
+        });
+
+        currentPage = 1; 
+        renderTable(filteredRequests);
+    }
+
+    if (searchInput) searchInput.addEventListener('input', filterData);
+    if (areaFilter) areaFilter.addEventListener('change', filterData);
+    if (statusFilter) statusFilter.addEventListener('change', filterData);
+
+    const btnNewRequest = document.getElementById('btnNewRequest');
+    if (btnNewRequest) {
+        btnNewRequest.addEventListener('click', () => {
+            window.location.href = "index.html"; 
+        });
+    }
+
+    fetchRequestsFromServer();
+});

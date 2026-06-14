@@ -15,7 +15,6 @@ body {
     min-height: 100vh;
 }
 
-/* SIDEBAR STYLE */
 .sidebar {
     width: 260px;
     background-color: #111827;
@@ -93,7 +92,6 @@ body {
     line-height: 1.5;
 }
 
-/* MAIN CONTENT */
 .main-content {
     flex-grow: 1;
     display: flex;
@@ -181,7 +179,6 @@ body {
     color: #64748b;
 }
 
-/* BODY CONTENT */
 .content-body {
     padding: 32px;
     max-width: 1200px;
@@ -210,7 +207,6 @@ body {
     margin-bottom: 24px;
 }
 
-/* GRID SETUP */
 .grid-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -225,7 +221,6 @@ body {
     padding: 24px;
 }
 
-/* FORM ELEMENTS */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -304,7 +299,6 @@ button {
     background-color: #166534;
 }
 
-/* TIPS SECTION */
 .tips-card {
     background-color: #f0fdf4;
     border: 1px solid #bbf7d0;
