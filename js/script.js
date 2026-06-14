@@ -1,6 +1,5 @@
 const baseUrl = "http://localhost:4001/";
 
-// MBROJTJA E FAQES: Nëse nuk ka bërë login, e kthen direkt te login.html
 if (!localStorage.getItem('currentUser')) {
     window.location.href = "login.html";
 }
@@ -29,15 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(err => console.error("Gabim te emri në index:", err));
     }
 
-    // ==========================================
-    // LOGOUT DROPDOWN LOGIC
-    // ==========================================
     const userProfile = document.querySelector('.user-profile');
     if (userProfile) {
         userProfile.style.position = 'relative';
         userProfile.style.cursor = 'pointer';
 
-        // Krijojmë container-in e menusë dropdown
         const dropdownMenu = document.createElement('div');
         dropdownMenu.style.cssText = `
             position: absolute;
@@ -53,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
             min-width: 130px;
         `;
 
-        // Krijojmë linkun e Logout brenda menusë
         const logoutLink = document.createElement('a');
         logoutLink.href = '#';
         logoutLink.innerHTML = '<i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i>Logout';
@@ -62,21 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
         dropdownMenu.appendChild(logoutLink);
         userProfile.appendChild(dropdownMenu);
 
-        // Shfaq / Fsheh dropdown-in me klikim
         userProfile.addEventListener('click', (e) => {
             e.stopPropagation();
             const isDisplayed = dropdownMenu.style.display === 'block';
             dropdownMenu.style.display = isDisplayed ? 'none' : 'block';
         });
 
-        // Funksioni i fshirjes së sesionit
         logoutLink.addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.removeItem('currentUser');
             window.location.href = 'login.html';
         });
 
-        // Mbyll dropdown-in nëse klikohet jashtë tij
         document.addEventListener('click', () => {
             dropdownMenu.style.display = 'none';
         });

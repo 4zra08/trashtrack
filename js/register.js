@@ -51,7 +51,6 @@ function handleRegister(event) {
         
         localStorage.removeItem('temporaryPickup'); 
         
-        // Ridrejtimi te faqja me tabelë (Request)
         window.location.href = "request.html"; 
     })
     .catch(error => {

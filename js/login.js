@@ -17,7 +17,6 @@ function handleLogin(event) {
         if (user.password === passwordValue) {
             localStorage.setItem('currentUser', emailValue);
             
-            // Ridrejtimi te faqja me tabelë (Request)
             window.location.href = "request.html";
         } else {
             alert("Fjalëkalimi është i pasaktë!");
