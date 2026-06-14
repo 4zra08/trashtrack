@@ -17,20 +17,15 @@
       "email": "azra@gmail.com",
       "password": "12341234",
       "id": "pcod6YlzGhI"
+    },
+    {
+      "fullName": "teuta",
+      "email": "mensur@gmail.com",
+      "password": "12341234",
+      "id": "n8alNnMWnQM"
     }
   ],
   "requests": [
-    {
-      "requestId": "2",
-      "area": "south",
-      "trashType": "organic",
-      "pickupDate": "2026-02-02",
-      "assignedTo": "member1",
-      "status": "pending",
-      "binCount": "22",
-      "notes": "",
-      "id": "xPf5pjNIqtI"
-    },
     {
       "requestId": "1",
       "area": "south",
@@ -87,6 +82,29 @@
       "notes": "",
       "userEmail": "azra@gmail.com",
       "id": "23suEIOgT9M"
+    },
+    {
+      "requestId": "123",
+      "area": "center",
+      "trashType": "plastic",
+      "pickupDate": "2026-06-07",
+      "assignedTo": "member2",
+      "status": "pending",
+      "binCount": "7",
+      "notes": "",
+      "id": "9xueC1LpSDU"
+    },
+    {
+      "requestId": "124",
+      "area": "north",
+      "trashType": "paper",
+      "pickupDate": "2026-06-06",
+      "assignedTo": "member2",
+      "status": "in-progress",
+      "binCount": "8",
+      "notes": "",
+      "id": "UxdTlbWCoMg"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
